@@ -5,4 +5,5 @@
 def main ():
     print ("Hello, instructor!")
     print ("Good-bye!")
+    print ("Hello again!")
 main ()
