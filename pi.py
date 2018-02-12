@@ -1,6 +1,8 @@
 # Intro to Programming
 # Author: Susan Cantoni
 # Date: 02-08-18
+# JA: You had to also print the difference betwen the calculated
+# value and the real value from math.pi
 
 # approximate the value of pi
 
