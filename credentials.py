@@ -8,11 +8,13 @@ def nameDetails():
     last = input("Enter your last name: ")
     return first, last
 
+def maristStyle(first, last):
+    uname = first + "." + last
+    return uname
 
 def main():
     first, last = nameDetails()
-    # TODO modify this to generate a Marist-style username
-    uname = first + "." + last
+    uname = maristStyle(first, last) 
     # ask user to create a new password
     passwd = input("Create a new password: ")
     # TODO modify this to ensure the password has at least 8
