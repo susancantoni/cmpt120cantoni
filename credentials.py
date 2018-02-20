@@ -12,17 +12,23 @@ def maristStyle(first, last):
     uname = first + "." + last
     return uname.lower()
 
-def passwordCheck (uname):
+def passwordCheckStrength (passwd):
+    if len(passwd) >=8:
+        return True
+    else:
+        return False
+
+def passwordCheckLength (uname):
     passwd = input("Create a new password: ")
-    while len(passwd) < 8:
+    while not passwordCheckStrength(passwd):
         print("Fool of a Took! That password is feeble! It must contain 8 characters!")
         passwd = input("Create a new password: ")
-        return passwd
+    return passwd
 
 def main():
     first, last = nameDetails()
     uname = maristStyle(first, last) 
-    passwd = passwordCheck(uname)
+    passwd = passwordCheckLength(uname)
     print("The force is strong in this one…")
     print("Account configured. Your new email address is", uname + "@marist.edu")
     
