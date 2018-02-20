@@ -13,7 +13,7 @@ def maristStyle(first, last):
     return uname.lower()
 
 def passwordCheckStrength (passwd):
-    if len(passwd) >=8:
+    if len(passwd) >=8 and passwd!=passwd.lower():
         return True
     else:
         return False
@@ -21,7 +21,7 @@ def passwordCheckStrength (passwd):
 def passwordCheckLength (uname):
     passwd = input("Create a new password: ")
     while not passwordCheckStrength(passwd):
-        print("Fool of a Took! That password is feeble! It must contain 8 characters!")
+        print("That password is feeble! It must contain 8 characters and at least one Uppercase!")
         passwd = input("Create a new password: ")
     return passwd
 
