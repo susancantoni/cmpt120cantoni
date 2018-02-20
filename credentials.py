@@ -2,10 +2,15 @@
 # Lab #5 – Working with Strings and Functions
 # Author: Susan Cantoni
 # Created: 2018-02-19
-def main():
-    # get user's first and last names
+
+def nameDetails():
     first = input("Enter your first name: ")
     last = input("Enter your last name: ")
+    return first, last
+
+
+def main():
+    first, last = nameDetails()
     # TODO modify this to generate a Marist-style username
     uname = first + "." + last
     # ask user to create a new password
