@@ -10,7 +10,7 @@ def nameDetails():
 
 def maristStyle(first, last):
     uname = first + "." + last
-    return uname
+    return uname.lower()
 
 def passwordCheck (uname):
     passwd = input("Create a new password: ")
