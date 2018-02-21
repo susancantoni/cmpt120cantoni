@@ -10,8 +10,13 @@ def create_button(win, x1, y1, x2, y2, label):
     text.setFace('arial')
     text.setSize(20)
     text.draw(win)
+    return button, label
 
-
+def inside(clicked, button, x1, y1, x2, y2, label):
+    if clicked.getX() > x1 and clicked.getX() < x2:
+            if clicked.getY() > y1 and clicked.getY() < y2:
+                return label
+    return False
         
 def main():
     win = GraphWin("Calculator", 300, 500)
@@ -37,5 +42,15 @@ def main():
     create_button (win, 227, 269, 292, 341, "+")
     create_button (win, 227, 346, 292, 418, "-")
     create_button (win, 227, 423, 292, 495, "=")
-    
+    displayString = ''
+    displayTextElement = Text(Point(0, 60), "")
+    displayTextElement.draw(win)
+    while 1 == 1:
+        clicked = win.getMouse()
+        displayString = label
+        displayString = (displayString + str(label)).rjust(150);
+        displayTextElement.undraw()
+        displayTextElement = Text(Point(0, 60), displayString)
+        displayTextElement.draw(win)
+        
 main() 
