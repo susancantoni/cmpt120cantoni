@@ -16,9 +16,9 @@ from graphics import *
 buttons = []
 
 
-def create_button(win, x1, y1, x2, y2, label):
+def create_button(win, x1, y1, x2, y2, label, color = 'aquamarine'):
     button = Rectangle(Point(x1,y1), Point(x2, y2))
-    button.setFill('aquamarine')
+    button.setFill(color)
     button.draw(win)
     text = Text(button.getCenter(), label)
     text.setFace('arial')
@@ -74,8 +74,8 @@ def main():
     buttons.append(create_button (win, 8, 115, 73, 187, "7"))
     buttons.append(create_button (win, 8, 192, 73, 264, "4"))
     buttons.append(create_button (win, 8, 269, 73, 341, "1"))
-    buttons.append(create_button (win, 8, 346, 73, 418, "+/-"))
-    buttons.append(create_button (win, 8, 423, 73, 495, "x2"))
+    buttons.append(create_button (win, 8, 346, 73, 418, "+/-", 'blue'))
+    buttons.append(create_button (win, 8, 423, 73, 495, "x2", 'blue'))
     buttons.append(create_button (win, 81, 115, 146, 187, "8"))
     buttons.append(create_button (win, 81, 192, 146, 264, "5"))
     buttons.append(create_button (win, 81, 269, 146, 341, "2"))
@@ -86,12 +86,12 @@ def main():
     buttons.append(create_button (win, 154, 269, 219, 341, "3"))
     buttons.append(create_button (win, 154, 346, 219, 418, ""))
     #TODO add decimal to blank button
-    buttons.append(create_button (win, 154, 423, 219, 495, "C"))
-    buttons.append(create_button (win, 227, 115, 292, 187, "/"))
-    buttons.append(create_button (win, 227, 192, 292, 264, "*"))
-    buttons.append(create_button (win, 227, 269, 292, 341, "+"))
-    buttons.append(create_button (win, 227, 346, 292, 418, "-"))
-    buttons.append(create_button (win, 227, 423, 292, 495, "="))
+    buttons.append(create_button (win, 154, 423, 219, 495, "C", 'blue'))
+    buttons.append(create_button (win, 227, 115, 292, 187, "/", 'blue'))
+    buttons.append(create_button (win, 227, 192, 292, 264, "*", 'blue'))
+    buttons.append(create_button (win, 227, 269, 292, 341, "+", 'blue'))
+    buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
+    buttons.append(create_button (win, 227, 423, 292, 495, "=", 'blue'))
 
     displayString = ''
     displayTextElement = Text(Point(200, 50), "")
