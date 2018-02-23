@@ -5,10 +5,9 @@
 #graphical user interface calculator
 
 #future enhancements:
-#TODO division operation
 #TODO deal with decimal numbers
 #TODO make display echo everything on the screen
-#TODOmake buttons change color after pressed
+#TODO make buttons change color after pressed
 
 from calc_functions import *
 from graphics import *
@@ -38,6 +37,7 @@ def check_button(button, label, x, y):
 
 def do_calculation(answer, entry, operation):
     print ("do calculation")
+    print (operation)
     if answer == None:
         answer = entry
         entry = 0
@@ -51,6 +51,12 @@ def do_calculation(answer, entry, operation):
         elif operation == '*':
             answer = multiply(answer, entry)
             print ('multiply')
+        elif operation == '/':
+            answer = divide(answer, entry)
+            print ('divide')
+        elif operation == '+/-':
+            answer = change_sign(answer)
+            print ('change sign')
         entry = 0
     return answer, entry
 
@@ -75,7 +81,8 @@ def main():
     buttons.append(create_button (win, 154, 115, 219, 187, "9"))
     buttons.append(create_button (win, 154, 192, 219, 264, "6"))
     buttons.append(create_button (win, 154, 269, 219, 341, "3"))
-    buttons.append(create_button (win, 154, 346, 219, 418, "."))
+    buttons.append(create_button (win, 154, 346, 219, 418, ""))
+    #TODO add decimal to blank button
     buttons.append(create_button (win, 154, 423, 219, 495, "C"))
     buttons.append(create_button (win, 227, 115, 292, 187, "/"))
     buttons.append(create_button (win, 227, 192, 292, 264, "*"))
@@ -122,12 +129,12 @@ def main():
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = str(answer)
+                    
+                elif key == '+/-':
+                    # do the calculation
+                    answer, entry = do_calculation(answer, entry, key)
+                    displayString = str(answer)
                 
-                elif key =='+/-':
-                    result = change_sign(int(label))
-                    print(result)
-                    # change the sign
-                    print ("change sign")
                 elif key == 'C':
                     # clear current text
                     displayString = ''

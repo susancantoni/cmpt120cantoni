@@ -8,7 +8,6 @@
 def add(num1, num2):
     result = num1 + num2
     return result
-#TODO subtract, multiply, devide, change sign
 
 def subtract(num1, num2):
     result = num1 - num2
@@ -22,6 +21,6 @@ def divide(num1, num2):
     result = num1 / num2
     return result
 
-def change_sign(label):
-    result = (label * -1)
+def change_sign(num1):
+    result = (num1 * -1)
     return result
