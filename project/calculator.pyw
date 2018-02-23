@@ -84,7 +84,7 @@ def main():
     buttons.append(create_button (win, 227, 423, 292, 495, "="))
 
     displayString = ''
-    displayTextElement = Text(Point(0, 60), "")
+    displayTextElement = Text(Point(200, 50), "")
     displayTextElement.draw(win)
     #answer is running total
     #entry is the current number being typed in
@@ -137,12 +137,15 @@ def main():
  
                 else:
                     # number keys
-                    displayString = (displayString + label)
                     entry = (entry * 10) + int(key)
+                    displayString = str(entry)
 
                 displayTextElement.undraw()
-                displayTextElement = Text(Point(0, 50), displayString)
+                displayTextElement = Text(Point(200, 50), displayString)
+                displayTextElement.setFace('arial')
+                displayTextElement.setSize(20)
                 displayTextElement.draw(win)
+                
 
                 print('answer: %s entry: %s display: %s' % (answer, entry, displayString))
 
