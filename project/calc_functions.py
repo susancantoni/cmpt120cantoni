@@ -1,3 +1,8 @@
+#Intro to Programming
+#Author: Susan Cantoni
+#Calculator Project 1
+
+
 #calculator math functions
 
 def add(num1, num2):
