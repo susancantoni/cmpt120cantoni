@@ -1,10 +1,21 @@
+#Intro to Programming
+#Author: Susan Cantoni
+#Calculator Project 1
+
 #graphical user interface calculator
+
+#future enhancements:
+#TODO division operation
+#TODO deal with decimal numbers
+#TODO make display echo everything on the screen
+#TODOmake buttons change color after pressed
+
 from calc_functions import *
 from graphics import *
 
 # list of buttons (button, label)
 buttons = []
-#button_labels = ['7', '4', '1', '+ / -', '', '8', '5', '2', '0', '', '9', '6', '3', '.', 'd e l', '/', '*', '+', '-', '=']
+
 
 def create_button(win, x1, y1, x2, y2, label):
     button = Rectangle(Point(x1,y1), Point(x2, y2))
@@ -24,6 +35,25 @@ def check_button(button, label, x, y):
     if x > x1 and x < x2 and y > y1 and y < y2:
         return label
     return False
+
+def do_calculation(answer, entry, operation):
+    print ("do calculation")
+    if answer == None:
+        answer = entry
+        entry = 0
+    else:
+        if operation == '+':
+            answer = add(answer, entry)
+            print ("add")
+        elif operation == '-':
+            answer = subtract(answer, entry)
+            print ("subtract")
+        elif operation == '*':
+            answer = multiply(answer, entry)
+            print ('multiply')
+        entry = 0
+    return answer, entry
+
 
 def main():
     win = GraphWin("Calculator", 300, 500)
@@ -46,7 +76,7 @@ def main():
     buttons.append(create_button (win, 154, 192, 219, 264, "6"))
     buttons.append(create_button (win, 154, 269, 219, 341, "3"))
     buttons.append(create_button (win, 154, 346, 219, 418, "."))
-    buttons.append(create_button (win, 154, 423, 219, 495, "del"))
+    buttons.append(create_button (win, 154, 423, 219, 495, "C"))
     buttons.append(create_button (win, 227, 115, 292, 187, "/"))
     buttons.append(create_button (win, 227, 192, 292, 264, "*"))
     buttons.append(create_button (win, 227, 269, 292, 341, "+"))
@@ -56,12 +86,20 @@ def main():
     displayString = ''
     displayTextElement = Text(Point(0, 60), "")
     displayTextElement.draw(win)
-
+    #answer is running total
+    #entry is the current number being typed in
+    #operation is adding the math funtion to the equals display
+    answer = None
+    entry = 0
+    operation = None
+    
+    
     while 1 == 1:
         clicked = win.getMouse()
         x = clicked.getX()
         y = clicked.getY()
         print(x, y)
+        
         for b in buttons:
             button, label = b
             key = check_button(button, label, x, y)
@@ -69,22 +107,43 @@ def main():
                 print ("button pressed: %s" % key)
                 if key == '=':
                     # do the calculation
+                    if answer == None:
+                        answer = entry
+                        displayString = str(answer)
+                        entry = 0
+                    else:
+                        answer, entry = do_calculation(answer, entry, operation)
+                        operation = None
+                        displayString = str(answer)
+                        
                     print ("calculate")
+                elif key in ['+', '-', '/', '*']:
+                    # do the calculation
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = str(answer)
+                
                 elif key =='+/-':
+                    result = change_sign(int(label))
+                    print(result)
                     # change the sign
                     print ("change sign")
-                elif key == 'del':
+                elif key == 'C':
                     # clear current text
                     displayString = ''
-                    displayTextElement.undraw()
-                    displayTextElement = Text(Point(0, 50), displayString)
-                    displayTextElement.draw(win)
+                    answer = None
+                    entry = 0
+                    operation = None
+ 
                 else:
                     # number keys
-                    displayString = (displayString + label).rjust(150);
-                    displayTextElement.undraw()
-                    displayTextElement = Text(Point(0, 50), displayString)
-                    displayTextElement.draw(win)
+                    displayString = (displayString + label)
+                    entry = (entry * 10) + int(key)
 
-        
+                displayTextElement.undraw()
+                displayTextElement = Text(Point(0, 50), displayString)
+                displayTextElement.draw(win)
+
+                print('answer: %s entry: %s display: %s' % (answer, entry, displayString))
+
 main() 
