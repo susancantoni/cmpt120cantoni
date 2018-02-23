@@ -24,3 +24,7 @@ def divide(num1, num2):
 def change_sign(num1):
     result = (num1 * -1)
     return result
+
+def square(num1):
+    result = num1 * num1
+    return result
