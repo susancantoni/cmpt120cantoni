@@ -6,7 +6,6 @@
 
 #future enhancements:
 #TODO deal with decimal numbers
-#TODO make display echo everything on the screen
 #TODO make buttons change color after pressed
 
 from calc_functions import *
@@ -36,30 +35,22 @@ def check_button(button, label, x, y):
     return False
 
 def do_calculation(answer, entry, operation):
-    print ("do calculation")
-    print (operation)
     if answer == None:
         answer = entry
         entry = 0
     else:
         if operation == '+':
             answer = add(answer, entry)
-            print ("add")
         elif operation == '-':
             answer = subtract(answer, entry)
-            print ("subtract")
         elif operation == '*':
             answer = multiply(answer, entry)
-            print ('multiply')
         elif operation == '/':
             answer = divide(answer, entry)
-            print ('divide')
         elif operation == '+/-':
             answer = change_sign(answer)
-            print ('change sign')
         elif operation == 'x2':
             answer = square(answer)
-            print ('squared')
         entry = 0
     return answer, entry
 
@@ -108,13 +99,11 @@ def main():
         clicked = win.getMouse()
         x = clicked.getX()
         y = clicked.getY()
-        print(x, y)
 
         for b in buttons:
             button, label = b
             key = check_button(button, label, x, y)
             if key:
-                print ("button pressed: %s" % key)
                 if key == '=':
                     # do the calculation
                     if answer == None:
@@ -126,12 +115,11 @@ def main():
                         operation = None
                         displayString = str(answer)
 
-                    print ("calculate")
                 elif key in ['+', '-', '/', '*']:
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
-                    displayString = str(answer)
+                    displayString = displayString + key
 
                 elif key == '+/-':
                     # do the calculation
@@ -153,15 +141,12 @@ def main():
                 else:
                     # number keys
                     entry = (entry * 10) + int(key)
-                    displayString = str(entry)
+                    displayString = displayString + key
 
                 displayTextElement.undraw()
                 displayTextElement = Text(Point(200, 50), displayString)
                 displayTextElement.setFace('arial')
                 displayTextElement.setSize(20)
                 displayTextElement.draw(win)
-
-
-                print('answer: %s entry: %s display: %s' % (answer, entry, displayString))
 
 main()
