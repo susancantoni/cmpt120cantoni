@@ -57,6 +57,9 @@ def do_calculation(answer, entry, operation):
         elif operation == '+/-':
             answer = change_sign(answer)
             print ('change sign')
+        elif operation == 'x2':
+            answer = square(answer)
+            print ('squared')
         entry = 0
     return answer, entry
 
@@ -72,7 +75,7 @@ def main():
     buttons.append(create_button (win, 8, 192, 73, 264, "4"))
     buttons.append(create_button (win, 8, 269, 73, 341, "1"))
     buttons.append(create_button (win, 8, 346, 73, 418, "+/-"))
-    buttons.append(create_button (win, 8, 423, 73, 495, ""))
+    buttons.append(create_button (win, 8, 423, 73, 495, "x2"))
     buttons.append(create_button (win, 81, 115, 146, 187, "8"))
     buttons.append(create_button (win, 81, 192, 146, 264, "5"))
     buttons.append(create_button (win, 81, 269, 146, 341, "2"))
@@ -99,14 +102,14 @@ def main():
     answer = None
     entry = 0
     operation = None
-    
-    
+
+
     while 1 == 1:
         clicked = win.getMouse()
         x = clicked.getX()
         y = clicked.getY()
         print(x, y)
-        
+
         for b in buttons:
             button, label = b
             key = check_button(button, label, x, y)
@@ -122,26 +125,31 @@ def main():
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
                         displayString = str(answer)
-                        
+
                     print ("calculate")
                 elif key in ['+', '-', '/', '*']:
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = str(answer)
-                    
+
                 elif key == '+/-':
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, key)
                     displayString = str(answer)
-                
+
+                elif key == 'x2':
+                    # do the calculation
+                    answer, entry = do_calculation(answer, entry, key)
+                    displayString = str(answer)
+
                 elif key == 'C':
                     # clear current text
                     displayString = ''
                     answer = None
                     entry = 0
                     operation = None
- 
+
                 else:
                     # number keys
                     entry = (entry * 10) + int(key)
@@ -152,8 +160,8 @@ def main():
                 displayTextElement.setFace('arial')
                 displayTextElement.setSize(20)
                 displayTextElement.draw(win)
-                
+
 
                 print('answer: %s entry: %s display: %s' % (answer, entry, displayString))
 
-main() 
+main()
