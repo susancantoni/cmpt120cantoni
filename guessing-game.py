@@ -13,12 +13,10 @@ def main():
     while not correct:
         if guess == 'quit':
             quit(0)
-            
         elif guess != 'lion':
             print ("Wrong answer! Guess again.")
             guess = input("What am I thinking of? ")
             guess = guess.lower()
-        
         else:
             print ("Congratulations! You got it!")
             return
