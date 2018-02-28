@@ -19,6 +19,11 @@ def main():
             guess = guess.lower()
         else:
             print ("Congratulations! You got it!")
+            follow_up = input("Do you like lions?? ('y' or 'n') ")
+            if follow_up == "y":
+                print ("Yay! I thought of something you like!")
+            else:
+                print ("Dang, I guess I thought of the wrong animal :( ")
             return
 
 main()
