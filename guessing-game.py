@@ -11,7 +11,7 @@ def main():
     guess = guess.lower()
     correct = False
     while not correct:
-        if guess == 'quit':
+        if guess[0] == 'q':
             quit(0)
         elif guess != 'lion':
             print ("Wrong answer! Guess again.")
