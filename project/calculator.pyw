@@ -51,6 +51,8 @@ def do_calculation(answer, entry, operation):
             answer = change_sign(answer)
         elif operation == 'x2':
             answer = square(answer)
+        elif operation == '%':
+            answer = percent(answer)
         entry = 0
     return answer, entry
 
@@ -71,18 +73,19 @@ def main():
     buttons.append(create_button (win, 81, 192, 146, 264, "5"))
     buttons.append(create_button (win, 81, 269, 146, 341, "2"))
     buttons.append(create_button (win, 81, 346, 146, 418, "0"))
-    buttons.append(create_button (win, 81, 423, 146, 495, ""))
+    buttons.append(create_button (win, 81, 423, 146, 495, "%", 'blue'))
     buttons.append(create_button (win, 154, 115, 219, 187, "9"))
     buttons.append(create_button (win, 154, 192, 219, 264, "6"))
     buttons.append(create_button (win, 154, 269, 219, 341, "3"))
-    buttons.append(create_button (win, 154, 346, 219, 418, ""))
-    #TODO add decimal to blank button
+    buttons.append(create_button (win, 154, 346, 219, 418, "."))
     buttons.append(create_button (win, 154, 423, 219, 495, "C", 'blue'))
     buttons.append(create_button (win, 227, 115, 292, 187, "/", 'blue'))
     buttons.append(create_button (win, 227, 192, 292, 264, "*", 'blue'))
     buttons.append(create_button (win, 227, 269, 292, 341, "+", 'blue'))
     buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
     buttons.append(create_button (win, 227, 423, 292, 495, "=", 'blue'))
+
+#TODO make more buttons for square root and memory (?)
 
     displayString = ''
     displayTextElement = Text(Point(200, 50), "")
@@ -114,13 +117,16 @@ def main():
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
                         displayString = str(answer)
+#TODO make decimal button print a decimal on display 
 
-                elif key in ['+', '-', '/', '*']:
+                elif key in ['+', '-', '/', '*', '%']:
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = displayString + key
 
+#TODO make square root work
+                    
                 elif key == '+/-':
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, key)
