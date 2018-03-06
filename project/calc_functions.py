@@ -31,6 +31,7 @@ def square(num1):
     return float (result)
 
 def over_x(num1):
+    x = num1
     result = 1 / x
     return float (result)
 
