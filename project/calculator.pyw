@@ -53,12 +53,16 @@ def do_calculation(answer, entry, operation):
             answer = square(answer)
         elif operation == '%':
             answer = percent(answer)
+        elif operation == '√':
+            answer = square_root(answer)
+        elif operation == '1/x':
+            answer = over_x(answer)
         entry = 0
     return answer, entry
 
 
 def main():
-    win = GraphWin("Calculator", 300, 500)
+    win = GraphWin("Calculator", 300, 577)
 
     displayScreen = Rectangle (Point(10,10), Point(290,110))
     displayScreen.setFill('lightcyan')
@@ -69,21 +73,26 @@ def main():
     buttons.append(create_button (win, 8, 269, 73, 341, "1"))
     buttons.append(create_button (win, 8, 346, 73, 418, "+/-", 'blue'))
     buttons.append(create_button (win, 8, 423, 73, 495, "x2", 'blue'))
+    buttons.append(create_button (win, 8, 500, 73, 572, "", 'blue'))
     buttons.append(create_button (win, 81, 115, 146, 187, "8"))
     buttons.append(create_button (win, 81, 192, 146, 264, "5"))
     buttons.append(create_button (win, 81, 269, 146, 341, "2"))
     buttons.append(create_button (win, 81, 346, 146, 418, "0"))
-    buttons.append(create_button (win, 81, 423, 146, 495, "%", 'blue'))
+    buttons.append(create_button (win, 81, 423, 146, 495, "√", 'blue'))
+    buttons.append(create_button (win, 81, 500, 146, 572, "", 'blue'))
     buttons.append(create_button (win, 154, 115, 219, 187, "9"))
     buttons.append(create_button (win, 154, 192, 219, 264, "6"))
     buttons.append(create_button (win, 154, 269, 219, 341, "3"))
     buttons.append(create_button (win, 154, 346, 219, 418, "."))
-    buttons.append(create_button (win, 154, 423, 219, 495, "C", 'blue'))
+    buttons.append(create_button (win, 154, 423, 219, 495, "1/x", 'blue'))
+    buttons.append(create_button (win, 154, 500, 219, 572, "C", 'blue'))
     buttons.append(create_button (win, 227, 115, 292, 187, "/", 'blue'))
     buttons.append(create_button (win, 227, 192, 292, 264, "*", 'blue'))
     buttons.append(create_button (win, 227, 269, 292, 341, "+", 'blue'))
     buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
-    buttons.append(create_button (win, 227, 423, 292, 495, "=", 'blue'))
+    buttons.append(create_button (win, 227, 423, 292, 495, "%", 'blue'))
+    buttons.append(create_button (win, 227, 500, 292, 572, "=", 'blue'))
+
 
 #TODO make more buttons for square root and memory (?)
 
@@ -129,12 +138,28 @@ def main():
                     
                 elif key == '+/-':
                     # do the calculation
-                    answer, entry = do_calculation(answer, entry, key)
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
                     displayString = str(answer)
 
                 elif key == 'x2':
                     # do the calculation
-                    answer, entry = do_calculation(answer, entry, key)
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = str(answer) + str('^2')
+
+                elif key  == '√':
+                    #do the calculation
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + str(answer)
+
+#TODO fix sqrt: make it show symbol and not only sqrt the answer
+
+                elif key == '1/x':
+                    x = entry
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
                     displayString = str(answer)
 
                 elif key == 'C':
