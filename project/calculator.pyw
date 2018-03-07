@@ -62,7 +62,7 @@ def do_calculation(answer, entry, operation):
 
 
 def main():
-    win = GraphWin("Calculator", 300, 577)
+    win = GraphWin("Calculator", 300, 654)
 
     displayScreen = Rectangle (Point(10,10), Point(290,110))
     displayScreen.setFill('lightcyan')
@@ -73,25 +73,29 @@ def main():
     buttons.append(create_button (win, 8, 269, 73, 341, "1"))
     buttons.append(create_button (win, 8, 346, 73, 418, "+/-", 'blue'))
     buttons.append(create_button (win, 8, 423, 73, 495, "x2", 'blue'))
-    buttons.append(create_button (win, 8, 500, 73, 572, "", 'blue'))
+    buttons.append(create_button (win, 8, 500, 73, 572, "MC", 'lightskyblue'))
+    buttons.append(create_button (win, 8, 577, 73, 649, "M+", 'lightskyblue'))
     buttons.append(create_button (win, 81, 115, 146, 187, "8"))
     buttons.append(create_button (win, 81, 192, 146, 264, "5"))
     buttons.append(create_button (win, 81, 269, 146, 341, "2"))
     buttons.append(create_button (win, 81, 346, 146, 418, "0"))
     buttons.append(create_button (win, 81, 423, 146, 495, "√", 'blue'))
-    buttons.append(create_button (win, 81, 500, 146, 572, "", 'blue'))
+    buttons.append(create_button (win, 81, 500, 146, 572, "M-", 'lightskyblue'))
+    buttons.append(create_button (win, 81, 577, 146, 649, "MR", 'lightskyblue'))
     buttons.append(create_button (win, 154, 115, 219, 187, "9"))
     buttons.append(create_button (win, 154, 192, 219, 264, "6"))
     buttons.append(create_button (win, 154, 269, 219, 341, "3"))
     buttons.append(create_button (win, 154, 346, 219, 418, "."))
     buttons.append(create_button (win, 154, 423, 219, 495, "1/x", 'blue'))
     buttons.append(create_button (win, 154, 500, 219, 572, "C", 'blue'))
+    buttons.append(create_button (win, 154, 577, 219, 649, "MS", 'lightskyblue'))
     buttons.append(create_button (win, 227, 115, 292, 187, "/", 'blue'))
     buttons.append(create_button (win, 227, 192, 292, 264, "*", 'blue'))
     buttons.append(create_button (win, 227, 269, 292, 341, "+", 'blue'))
     buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
     buttons.append(create_button (win, 227, 423, 292, 495, "%", 'blue'))
     buttons.append(create_button (win, 227, 500, 292, 572, "=", 'blue'))
+    buttons.append(create_button (win, 227, 577, 292, 649, "", 'lightskyblue'))
 
 
 #TODO make more buttons for square root and memory (?)
@@ -107,7 +111,8 @@ def main():
     entry = 0
     operation = None
     clearNextNumber = False
-    decimal = False 
+    memory = 0
+ #   decimal = False 
 
 
     while 1 == 1:
