@@ -102,9 +102,12 @@ def main():
     #answer is running total
     #entry is the current number being typed in
     #operation is adding the math funtion to the equals display
+    #clearNextNumber means the display should be cleared next time a number is pressed
     answer = None
     entry = 0
     operation = None
+    clearNextNumber = False
+    decimal = False 
 
 
     while 1 == 1:
@@ -117,6 +120,7 @@ def main():
             key = check_button(button, label, x, y)
             if key:
                 if key == '=':
+                    clearNextNumber = True
                     # do the calculation
                     if answer == None:
                         answer = entry
@@ -133,6 +137,7 @@ def main():
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = displayString + key
+                    clearNextNumber = False
 
 #TODO make square root work
                     
@@ -141,18 +146,21 @@ def main():
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = str(answer)
+                    clearNextNumber = True
 
                 elif key == 'x2':
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = str(answer) + str('^2')
+                    clearNextNumber = True
 
                 elif key  == '√':
                     #do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = key + str(answer)
+                    clearNextNumber = True
 
 #TODO fix sqrt: make it show symbol and not only sqrt the answer
 
@@ -161,6 +169,7 @@ def main():
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = str(answer)
+                    clearNextNumber = True
 
                 elif key == 'C':
                     # clear current text
@@ -169,10 +178,27 @@ def main():
                     entry = 0
                     operation = None
 
+                elif key == '.':
+                    displayString = displayString + '.'
+                    clearNextNumber = False
+                   
+
                 else:
                     # number keys
+                    if clearNextNumber:
+                        displayString = ''
+                        clearNextNumber = False
+                        answer = None
+                        entry = 0
+                        operation = None
                     entry = (entry * 10) + int(key)
                     displayString = displayString + key
+                    '''
+                    if decimal:
+                        displayString = float(answer)
+                        print(displayString)
+                        return True
+                    '''
 
                 displayTextElement.undraw()
                 displayTextElement = Text(Point(200, 50), displayString)
