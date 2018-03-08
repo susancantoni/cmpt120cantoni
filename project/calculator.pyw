@@ -107,8 +107,7 @@ def main():
     operation = None
     clearNextNumber = False
     memory = 0
- #   decimal = False 
-
+    entryString = ''
 
     while 1 == 1:
         clicked = win.getMouse()
@@ -126,6 +125,7 @@ def main():
                         answer = entry
                         displayString = str(answer)
                         entry = 0
+                        entryString = ''
                     else:
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
@@ -134,19 +134,15 @@ def main():
                 elif key in ['+', '-', '/', '*', '%']:
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
+                    entryString = ''
                     operation = key
                     displayString = displayString + key
                     clearNextNumber = False
-
-                elif key == '.':
-                    displayString = displayString + '.'
-                    print ("you made it here")
-                    clearNextNumber = False
-
                     
                 elif key == '+/-':
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
+                    entryString = ''
                     operation = key
                     displayString = str(answer)
                     clearNextNumber = True
@@ -161,6 +157,7 @@ def main():
                 elif key  == '√':
                     #do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
+                    entryString = ''
                     operation = key
                     displayString = key + str(answer)
                     clearNextNumber = True
@@ -170,6 +167,7 @@ def main():
                 elif key == '1/x':
                     x = entry
                     answer, entry = do_calculation(answer, entry, operation)
+                    entryString = ''
                     operation = key
                     displayString = str(answer)
                     clearNextNumber = True
@@ -179,18 +177,21 @@ def main():
                     displayString = ''
                     answer = None
                     entry = 0
+                    entryString = ''
                     operation = None
 
                 elif key == 'M+':
-                    displayString = add(float(memory), entry)
+                    memory = add(float(memory), entry)
+                    displayString = float(memory)
                     print("added to memory")
 
                 elif key == 'MR':
-                    displayString = memory
+                    displayString = float(memory)
                     print("this is in the memory now")
                     
                 elif key == 'M-':
-                    displayString = subtract(float(memory), entry)
+                    memory = subtract(float(memory), entry)
+                    displayString = float(memory)
                     print ("memory minus entry")
 
                 elif key == 'MC':
@@ -198,27 +199,26 @@ def main():
                     print("memory cleared")
 
                 elif key == 'MS':
-                    memory = displayString
+                    temp = memory
+                    memory = entry
+                    entry = temp
+                    displayString = float(memory)
                     print ("new memory")
 
                 
                    
                 else:
-                    # number keys
+                    # number keys or '.'
                     if clearNextNumber:
                         displayString = ''
                         clearNextNumber = False
                         answer = None
                         entry = 0
+                        entryString = ''
                         operation = None
-                    entry = (entry * 10) + int(key)
+                    entryString = entryString + key
+                    entry = float(entryString) 
                     displayString = displayString + key
-                    '''
-                    if decimal:
-                        displayString = float(answer)
-                        print(displayString)
-                        return True
-                    '''
 
                 displayTextElement.undraw()
                 displayTextElement = Text(Point(200, 50), displayString)
