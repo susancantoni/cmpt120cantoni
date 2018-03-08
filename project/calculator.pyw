@@ -4,12 +4,9 @@
 
 #graphical user interface calculator
 
-#future enhancements:
-#TODO deal with decimal numbers
-#TODO make buttons change color after pressed
-
 from calc_functions import *
 from graphics import *
+from decimal import *
 
 # list of buttons (button, label)
 buttons = []
@@ -98,8 +95,6 @@ def main():
     buttons.append(create_button (win, 227, 577, 292, 649, "", 'lightskyblue'))
 
 
-#TODO make more buttons for square root and memory (?)
-
     displayString = ''
     displayTextElement = Text(Point(200, 50), "")
     displayTextElement.draw(win)
@@ -134,8 +129,7 @@ def main():
                     else:
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
-                        displayString = str(answer)
-#TODO make decimal button print a decimal on display 
+                        displayString = str(answer) 
 
                 elif key in ['+', '-', '/', '*', '%']:
                     # do the calculation
@@ -144,7 +138,11 @@ def main():
                     displayString = displayString + key
                     clearNextNumber = False
 
-#TODO make square root work
+                elif key == '.':
+                    displayString = displayString + '.'
+                    print ("you made it here")
+                    clearNextNumber = False
+
                     
                 elif key == '+/-':
                     # do the calculation
@@ -183,11 +181,28 @@ def main():
                     entry = 0
                     operation = None
 
-                elif key == '.':
-                    displayString = displayString + '.'
-                    clearNextNumber = False
-                   
+                elif key == 'M+':
+                    displayString = add(float(memory), entry)
+                    print("added to memory")
 
+                elif key == 'MR':
+                    displayString = memory
+                    print("this is in the memory now")
+                    
+                elif key == 'M-':
+                    displayString = subtract(float(memory), entry)
+                    print ("memory minus entry")
+
+                elif key == 'MC':
+                    memory = 0
+                    print("memory cleared")
+
+                elif key == 'MS':
+                    memory = displayString
+                    print ("new memory")
+
+                
+                   
                 else:
                     # number keys
                     if clearNextNumber:
