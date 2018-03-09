@@ -6,7 +6,6 @@
 
 from calc_functions import *
 from graphics import *
-from decimal import *
 
 # list of buttons (button, label)
 buttons = []
@@ -162,8 +161,6 @@ def main():
                     displayString = key + str(answer)
                     clearNextNumber = True
 
-#TODO fix sqrt: make it show symbol and not only sqrt the answer
-
                 elif key == '1/x':
                     x = entry
                     answer, entry = do_calculation(answer, entry, operation)
@@ -181,32 +178,25 @@ def main():
                     operation = None
 
                 elif key == 'M+':
-                    memory = add(float(memory), entry)
+                    memory = add(float(memory), entry or answer)
                     displayString = float(memory)
-                    print("added to memory")
 
                 elif key == 'MR':
                     displayString = float(memory)
-                    print("this is in the memory now")
                     
                 elif key == 'M-':
-                    memory = subtract(float(memory), entry)
+                    memory = subtract(float(memory), entry or answer)
                     displayString = float(memory)
-                    print ("memory minus entry")
 
                 elif key == 'MC':
                     memory = 0
-                    print("memory cleared")
 
                 elif key == 'MS':
                     temp = memory
                     memory = entry
                     entry = temp
                     displayString = float(memory)
-                    print ("new memory")
 
-                
-                   
                 else:
                     # number keys or '.'
                     if clearNextNumber:
