@@ -128,7 +128,7 @@ def main():
                     else:
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
-                        displayString = str(answer) 
+                        displayString = '%20.3f' % (answer) 
 
                 elif key in ['+', '-', '/', '*', '%']:
                     # do the calculation
