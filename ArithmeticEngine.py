@@ -12,9 +12,24 @@ def showOutro():
 def doLoop():
     while True:
         cmd = input("What computation do you want to perform? ").lower()
-        num1 = int(input("Enter the first number: "))
-        num2 = int(input("Enter the second number: "))
+        other = False
+        while other == False:
+            if cmd == "add" or cmd == "sub" or cmd == "mult" or cmd == "div" or cmd == "quit":
+                other = True
+            else:
+                print (cmd, "is not a valid command.")
+                cmd = input("What computation do you want to perform? ").lower()
+        if cmd == "quit":
+            break
+                
+        try:
+            num1 = int(input("Enter the first number: "))
+            num2 = int(input("Enter the second number: "))
+        except:
+            print ("That input is not valid. Enter a number.")
+            continue
         if cmd == "add":
+            print ("you got here")
             result = num1 + num2
         elif cmd == "sub":
             result = num1 - num2
@@ -24,11 +39,11 @@ def doLoop():
             result = num1 // num2
         elif cmd == "quit":
             break
-        else:
-            print (cmd, " is not a valid command.")
         print("The result is " + str(result) + ".\n")
+            
 def main():
     showIntro()
     doLoop()
     showOutro()
+
 main()
