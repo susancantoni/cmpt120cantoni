@@ -24,6 +24,8 @@ def doLoop():
             result = num1 // num2
         elif cmd == "quit":
             break
+        else:
+            print (cmd, " is not a valid command.")
         print("The result is " + str(result) + ".\n")
 def main():
     showIntro()
