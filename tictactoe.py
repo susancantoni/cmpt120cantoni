@@ -4,9 +4,9 @@
 # Created: 2018-03-26
 
 symbol = [ " ", "x", "o" ]
-board = [0,1,2,
-         3,4,5,
-         6,7,8]
+board = [' ',' ',' ',
+         ' ',' ',' ',
+         ' ',' ',' ']
 
 def printBoard(board):
     print('+-----------+')
@@ -17,7 +17,17 @@ def printBoard(board):
     print('|', board[6], '|', board[7], '|', board[8], '|')
     print('+-----------+')
     
+while True:
+    choice = input('Select a spot: ')
+    choice = int(choice)
 
+    if board[choice] != 'x' and board[choice] != 'o':
+        board[choice] = 'x'
+
+    else:
+        print ("This spot is taken!")
+
+    printBoard(board)
 
 """
 def markBoard(board, row, col, player):
