@@ -16,44 +16,41 @@ def printBoard(board):
     print('+-----------+')
     print('|', board[6], '|', board[7], '|', board[8], '|')
     print('+-----------+')
-    
-while True:
-    choice = input('Select a spot: ')
-    choice = int(choice)
 
-    if board[choice] != 'x' and board[choice] != 'o':
-        board[choice] = 'x'
+def markBoard(board):
+    while True:
+        choice1 = input('Player 1, select a spot: ')
+        choice1 = int(choice1)
+        
+        if board[choice1] == 'x' or board[choice1] == 'o':
+            print ("This spot is taken!")
+            choice1 = input('Player 1, pick a different spot: ')
+            choice1 = int(choice1)
+            if board[choice1] != 'x' and board[choice1] != 'o':
+                board[choice1] = 'x'
 
-    else:
-        print ("This spot is taken!")
+        elif board[choice1] != 'x' and board[choice1] != 'o':
+            board[choice1] = 'x'
+            
+        printBoard(board)
 
-    printBoard(board)
+        choice2 = input('Player 2, select a spot: ')
+        choice2 = int(choice2)
+        
+        if board[choice2] == 'x' or board[choice2] == 'o':
+            print ("This spot is taken!")
+            choice2 = input('Player 2, pick a different spot: ')
+            choice2 = int(choice2)
+            if board[choice2] != 'x' and board[choice2] != 'o':
+               board[choice2] = 'o'
 
-"""
-def markBoard(board, row, col, player):
-    # check to see whether the desired square is blank
-    # if so, set it to the player number
-    pass
-
-def getPlayerMove():
-    input("") # prompt the user separately for the row and column numbers
-    return (0,0) # then return that row and column instead of (0,0)
-
-def hasBlanks(board):
-    # for each row in the board...
-    # for each square in the row...
-    # check whether the square is blank
-    # if so, return True
-    return True # if no square is blank, return False
+        elif board[choice2] != 'x' and board[choice2] != 'o':
+            board[choice2] = 'o'
+            
+        printBoard(board)
 
 def main():
-    board = [] # TODO replace this with a three-by-three matrix of zeros
-    player = 1
-    while hasBlanks(board):
-        printBoard(board)
-        row,col = getPlayerMove()
-        markBoard(board,row,col,player)
-        player = player % 2 + 1 # switch player for next turn
+    printBoard(board)
+    markBoard(board)
 
 main()
-"""
