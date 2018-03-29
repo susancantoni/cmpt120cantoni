@@ -149,24 +149,24 @@ def main():
             key = check_button(button, label, x, y)
             if key:
                 if key == '=':
-                    clearNextNumber = True
+                    clearNextNumber = False
                     # do the calculation
                     if answer == None:
                         answer = entry
-                        displayString = str(answer)
+                        displayString = entryString + '\n' + str(answer)
                         entry = 0
                         entryString = ''
                     else:
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
-                        displayString = '%20.3f' % (answer) 
+                        displayString = displayString + '\n' + '%20.3f' % (answer) 
 
                 elif key in ['+', '-', '/', '*', '%']:
                     # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     entryString = ''
                     operation = key
-                    displayString = displayString + key
+                    displayString = displayString + key 
                     clearNextNumber = False
                     
                 elif key == '+/-':
@@ -276,7 +276,7 @@ def main():
                     operation = key
                     displayString = displayString + '^'
                     clearNextNumber = False
-                    #how to get it to read num1 key num2
+
 
                 else:
                     # number keys or '.'
