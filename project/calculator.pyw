@@ -67,11 +67,12 @@ def do_calculation(answer, entry, operation):
             answer = natural_log(answer)
         elif operation == 'sin^-1':
             answer = arc_sin(answer)
-            print (answer)
         elif operation == 'cos^-1':
             answer = arc_cos(answer)
         elif operation == 'tan^-1':
             answer = arc_tan(answer)
+        elif operation == 'x^y':
+            answer = x_to_the_y(answer, entry)
         entry = 0
     return answer, entry
 
@@ -269,6 +270,14 @@ def main():
                     displayString = key + '(' + str(answer) + ')'
                     clearNextNumber = True
 
+                elif key == 'x^y':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    entryString = ''
+                    operation = key
+                    displayString = displayString + '^'
+                    clearNextNumber = False
+                    #how to get it to read num1 key num2
+
                 else:
                     # number keys or '.'
                     if clearNextNumber:
@@ -279,10 +288,7 @@ def main():
                         entryString = ''
                         operation = None
                     entryString = entryString + key
-                    entry = float(entryString)
-                    # if you come here after using the memory
-                    # keys, displayString is float and it
-                    # gives you an error
+                    entry = float(entryString) 
                     displayString = displayString + key
 
                 displayTextElement.undraw()
