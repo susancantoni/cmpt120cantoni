@@ -53,14 +53,33 @@ def do_calculation(answer, entry, operation):
             answer = square_root(answer)
         elif operation == '1/x':
             answer = over_x(answer)
+        elif operation == 'sin':
+            answer = sine(answer)
+        elif operation == 'cos':
+            answer = cosine(answer)
+        elif operation == 'tan':
+            answer = tangent(answer)
+        elif operation == '10^x':
+            answer = power_of_ten(answer)
+        elif operation == 'log':
+            answer = log_button(answer)
+        elif operation == 'ln':
+            answer = natural_log(answer)
+        elif operation == 'sin^-1':
+            answer = arc_sin(answer)
+            print (answer)
+        elif operation == 'cos^-1':
+            answer = arc_cos(answer)
+        elif operation == 'tan^-1':
+            answer = arc_tan(answer)
         entry = 0
     return answer, entry
 
 
 def main():
-    win = GraphWin("Calculator", 300, 654)
+    win = GraphWin("Calculator", 446, 654)
 
-    displayScreen = Rectangle (Point(10,10), Point(290,110))
+    displayScreen = Rectangle (Point(10,10), Point(436,110))
     displayScreen.setFill('lightcyan')
     displayScreen.draw(win)
 
@@ -69,14 +88,14 @@ def main():
     buttons.append(create_button (win, 8, 269, 73, 341, "1"))
     buttons.append(create_button (win, 8, 346, 73, 418, "+/-", 'blue'))
     buttons.append(create_button (win, 8, 423, 73, 495, "x2", 'blue'))
-    buttons.append(create_button (win, 8, 500, 73, 572, "MC", 'lightskyblue'))
+    buttons.append(create_button (win, 8, 500, 73, 572, "(", 'blue'))
     buttons.append(create_button (win, 8, 577, 73, 649, "M+", 'lightskyblue'))
     buttons.append(create_button (win, 81, 115, 146, 187, "8"))
     buttons.append(create_button (win, 81, 192, 146, 264, "5"))
     buttons.append(create_button (win, 81, 269, 146, 341, "2"))
     buttons.append(create_button (win, 81, 346, 146, 418, "0"))
     buttons.append(create_button (win, 81, 423, 146, 495, "√", 'blue'))
-    buttons.append(create_button (win, 81, 500, 146, 572, "M-", 'lightskyblue'))
+    buttons.append(create_button (win, 81, 500, 146, 572, ")", 'blue'))
     buttons.append(create_button (win, 81, 577, 146, 649, "MR", 'lightskyblue'))
     buttons.append(create_button (win, 154, 115, 219, 187, "9"))
     buttons.append(create_button (win, 154, 192, 219, 264, "6"))
@@ -91,7 +110,18 @@ def main():
     buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
     buttons.append(create_button (win, 227, 423, 292, 495, "%", 'blue'))
     buttons.append(create_button (win, 227, 500, 292, 572, "=", 'blue'))
-    buttons.append(create_button (win, 227, 577, 292, 649, "", 'lightskyblue'))
+    buttons.append(create_button (win, 227, 577, 292, 649, "M-", 'lightskyblue'))
+    buttons.append(create_button (win, 300, 115, 365, 187, "sin", 'blue'))
+    buttons.append(create_button (win, 300, 192, 365, 264, "cos", 'blue'))
+    buttons.append(create_button (win, 300, 269, 365, 341, "tan", 'blue'))
+    buttons.append(create_button (win, 300, 346, 365, 418, "10^x", 'blue'))
+    buttons.append(create_button (win, 300, 423, 365, 495, "log", 'blue'))
+    buttons.append(create_button (win, 300, 500, 365, 572, "ln", 'blue'))
+    buttons.append(create_button (win, 300, 577, 365, 649, "MC", 'lightskyblue'))
+    buttons.append(create_button (win, 373, 115, 438, 187, "sin^-1", 'blue'))
+    buttons.append(create_button (win, 373, 192, 438, 264, "cos^-1", 'blue'))
+    buttons.append(create_button (win, 373, 269, 438, 341, "tan^-1", 'blue'))
+    buttons.append(create_button (win, 373, 346, 438, 418, "x^y", 'blue'))
 
 
     displayString = ''
@@ -196,6 +226,48 @@ def main():
                     memory = entry
                     entry = temp
                     displayString = float(memory)
+                    
+                elif key == '10^x':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = '10^' + str(answer)
+                    clearNextNumber = True
+                    
+                elif key in ['sin', 'cos', 'tan']:
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + '(' + str(answer) + ')'
+                    clearNextNumber = True
+
+                elif key == 'log':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + '(' + str(answer) + ')'
+                    clearNextNumber = True
+                    
+                elif key == 'ln':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + '(' + str(answer) + ')'
+                    clearNextNumber = True
+                    
+                elif key == 'sin^-1':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + '(' + str(answer) + ')'
+                    clearNextNumber = True
+                                    
+                elif key == 'cos^-1':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + '(' + str(answer) + ')'
+                    clearNextNumber = True
+                                    
+                elif key == 'tan^-1':
+                    answer, entry = do_calculation(answer, entry, operation)
+                    operation = key
+                    displayString = key + '(' + str(answer) + ')'
+                    clearNextNumber = True
 
                 else:
                     # number keys or '.'
@@ -211,7 +283,7 @@ def main():
                     displayString = displayString + key
 
                 displayTextElement.undraw()
-                displayTextElement = Text(Point(200, 50), displayString)
+                displayTextElement = Text(Point(300, 50), displayString)
                 displayTextElement.setFace('arial')
                 displayTextElement.setSize(20)
                 displayTextElement.draw(win)
