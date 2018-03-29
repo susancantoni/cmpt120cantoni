@@ -279,7 +279,10 @@ def main():
                         entryString = ''
                         operation = None
                     entryString = entryString + key
-                    entry = float(entryString) 
+                    entry = float(entryString)
+                    # if you come here after using the memory
+                    # keys, displayString is float and it
+                    # gives you an error
                     displayString = displayString + key
 
                 displayTextElement.undraw()

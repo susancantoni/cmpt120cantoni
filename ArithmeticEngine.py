@@ -29,7 +29,7 @@ def doLoop():
             print ("That input is not valid. Enter a number.")
         if num2 == 0:
             raise Exception("Unable to divide by zero!")
-        continue
+            continue
         if cmd == "add":
             print ("you got here")
             result = num1 + num2
