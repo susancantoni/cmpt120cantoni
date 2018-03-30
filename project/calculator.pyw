@@ -127,9 +127,9 @@ def create_window(scientific_mode):
         buttons.append(create_button (win, 373, 577, 438, 649, "Sci", 'lightskyblue'))
 
     else:
-        win = GraphWin("Calculator", 300, 654)
+        win = GraphWin("Calculator", 373, 654)
 
-        displayScreen = Rectangle (Point(10,10), Point(290,110))
+        displayScreen = Rectangle (Point(10,10), Point(363,110))
         displayScreen.setFill('lightcyan')
         displayScreen.draw(win)
 
@@ -161,6 +161,8 @@ def create_window(scientific_mode):
         buttons.append(create_button (win, 227, 423, 292, 495, "%", 'blue'))
         buttons.append(create_button (win, 227, 500, 292, 572, "=", 'blue'))
         buttons.append(create_button (win, 227, 577, 292, 649, "Sci", 'lightskyblue'))
+        buttons.append(create_button (win, 300, 115, 365, 187, "(", 'blue'))
+        buttons.append(create_button (win, 300, 192, 365, 264, ")", 'blue'))
 
     displayString = ''
     displayTextElement = Text(Point(200, 50), "")
@@ -335,6 +337,15 @@ def main():
                     entry = 0
                     entryString = ''
                     operation = None
+
+                elif key == '(':
+                    entryString = ''
+                    displayString = '(' + entryString
+                    clearNextNumber = False
+
+                elif key == ')':
+                    displayString = displayString + ')'
+                    clearNextNumer = False
 
                     
                 else:
