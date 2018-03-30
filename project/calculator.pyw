@@ -254,13 +254,16 @@ def main():
                 elif key == 'M+':
                     memory = add(float(memory), entry or answer)
                     displayString = float(memory)
+                    displayString = str(memory)
 
                 elif key == 'MR':
                     displayString = float(memory)
+                    displayString = str(memory)
                     
                 elif key == 'M-':
                     memory = subtract(float(memory), entry or answer)
                     displayString = float(memory)
+                    displayString = str(memory)
 
                 elif key == 'MC':
                     memory = 0
@@ -270,6 +273,7 @@ def main():
                     memory = entry
                     entry = temp
                     displayString = float(memory)
+                    displayString = str(memory)
                     
                 elif key == '10^x':
                     answer, entry = do_calculation(answer, entry, operation)
@@ -332,9 +336,7 @@ def main():
                     entryString = ''
                     operation = None
 
-
                     
-
                 else:
                     # number keys or '.'
                     if clearNextNumber:
