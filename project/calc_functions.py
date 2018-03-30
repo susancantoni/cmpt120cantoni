@@ -79,7 +79,9 @@ def arc_tan(num1):
     result = atan(num1)
     return float(result)
 
-
+def x_to_the_y(num1, num2):
+    result = num1 ** num2
+    return float(result)
 
 
 
