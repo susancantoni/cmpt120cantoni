@@ -85,6 +85,8 @@ def create_window(scientific_mode):
         displayScreen.setFill('lightcyan')
         displayScreen.draw(win)
 
+        del buttons[:]
+
         buttons.append(create_button (win, 8, 115, 73, 187, "7"))
         buttons.append(create_button (win, 8, 192, 73, 264, "4"))
         buttons.append(create_button (win, 8, 269, 73, 341, "1"))
@@ -133,6 +135,8 @@ def create_window(scientific_mode):
         displayScreen.setFill('lightcyan')
         displayScreen.draw(win)
 
+        del buttons[:]
+    
         buttons.append(create_button (win, 8, 115, 73, 187, "7"))
         buttons.append(create_button (win, 8, 192, 73, 264, "4"))
         buttons.append(create_button (win, 8, 269, 73, 341, "1"))
@@ -171,7 +175,7 @@ def create_window(scientific_mode):
     return win, displayString, displayTextElement
 
 def main():
-    scientific_mode = True
+    scientific_mode = False
     win, displayString, displayTextElement = create_window (scientific_mode)
     #answer is running total
     #entry is the current number being typed in
