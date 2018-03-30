@@ -340,7 +340,7 @@ def main():
 
                 elif key == '(':
                     entryString = ''
-                    displayString = '(' + entryString
+                    displayString = displayString + '(' + entryString
                     clearNextNumber = False
 
                 elif key == ')':
