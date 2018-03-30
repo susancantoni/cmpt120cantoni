@@ -17,37 +17,30 @@ def printBoard(board):
     print('|', board[6], '|', board[7], '|', board[8], '|')
     print('+-----------+')
 
+def hasBlanks(board):
+    # return true if any blank spaces left
+    for cell in board:
+        if cell == ' ':
+            return True
+    return False
+
 def markBoard(board):
-    while True:
-        choice1 = input('Player 1, select a spot: ')
-        choice1 = int(choice1)
-        
-        if board[choice1] == 'x' or board[choice1] == 'o':
-            print ("This spot is taken!")
-            choice1 = input('Player 1, pick a different spot: ')
-            choice1 = int(choice1)
-            if board[choice1] != 'x' and board[choice1] != 'o':
-                board[choice1] = 'x'
-
-        elif board[choice1] != 'x' and board[choice1] != 'o':
-            board[choice1] = 'x'
-            
-        printBoard(board)
-
-        choice2 = input('Player 2, select a spot: ')
-        choice2 = int(choice2)
-        
-        if board[choice2] == 'x' or board[choice2] == 'o':
-            print ("This spot is taken!")
-            choice2 = input('Player 2, pick a different spot: ')
-            choice2 = int(choice2)
-            if board[choice2] != 'x' and board[choice2] != 'o':
-               board[choice2] = 'o'
-
-        elif board[choice2] != 'x' and board[choice2] != 'o':
-            board[choice2] = 'o'
-            
-        printBoard(board)
+    player = 1
+    while hasBlanks(board):
+        choice = input('Player %d, select a spot(0-8): ' % player)
+        choice = int(choice)
+        if choice < 0 or choice > 8:
+            print ("Please enter a number from 0 to 8")
+        elif board[choice] != ' ':
+            print ("This spot is taken! Pick a different spot. ")
+        else:
+            #assign space, switch to other player
+            board[choice] = symbol[player]
+            printBoard(board)
+            if player == 1:
+                player = 2
+            else:
+                player = 1
 
 def main():
     printBoard(board)
