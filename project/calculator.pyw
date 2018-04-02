@@ -4,6 +4,8 @@
 
 #graphical user interface calculator
 
+# JA: You could simplify your code by using some more functions and loops
+
 from calc_functions import *
 from graphics import *
 
@@ -354,6 +356,8 @@ def main():
                     
                 else:
                     # number keys or '.'
+                    # JA: SIngle argument functions, e.g. sin could
+                    # calculate without waiting for =
                     if clearNextNumber:
                         displayString = ''
                         clearNextNumber = False
