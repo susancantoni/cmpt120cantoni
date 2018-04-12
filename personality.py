@@ -15,7 +15,7 @@ p = [[3,0,0,5],
 def getInteraction():
     #get interaction from user and assign an interger to userAction
     #while True:
-    userAction = input("Choose an action (reward, punish, threaten, joke): ")
+    userAction = input("\nChoose an action (reward, punish, threaten, joke): ")
     if userAction == "reward":
         userAction = 0
     if userAction == "punish":
@@ -32,36 +32,36 @@ def lookupEmotion (userAction, currEmotion):
     reaction = p[i][j]
     
     if reaction == 0:
-        currEmotion = "anger"
+        feeling = "anger"
         print ("You make me so angry sometimes!")
-        return 0
+        return 0, feeling
         
     if reaction == 1:
-        currEmotion = "disgust"
+        feeling = "disgust"
         print ("Ugh, I am #DISGUSTED")
-        return 1
+        return 1, feeling
         
     if reaction == 2:
-        currEmotion = "fear"
+        feeling = "fear"
         print ("AHH I'm scared!")
-        return 2
+        return 2, feeling
         
     if reaction == 3:
-        currEmotion = "happiness"
+        feeling = "happiness"
         print ("Aww you made me happy!")
-        return 3
+        return 3, feeling
         
     if reaction == 4:
-        currEmotion = "sadness"
+        feeling = "sadness"
         print ("Boooo you made me sad")
-        return 4
+        return 4, feeling
         
     if reaction == 5:
-        currEmotion = "surprise"
+        feeling = "surprise"
         print("I was not expecting that!! You surprised me!")
-        return 5
-    print(currEmotion)
-    return currEmotion
+        return 5, feeling
+    
+    return currEmotion, feeling
         
 
 
@@ -72,6 +72,7 @@ def main():
     currEmotion = 3
     while True:
         userAction = getInteraction()
-        currEmotion = lookupEmotion (userAction, currEmotion)
+        currEmotion, feeling = lookupEmotion (userAction, currEmotion)
+        print ("I am feeling... ", feeling)
 
 main()
