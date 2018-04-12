@@ -4,6 +4,8 @@
 # Created: 2018-03-26
 
 symbol = [ " ", "x", "o" ]
+
+# This works, but you should have used a list of lists
 board = [' ',' ',' ',
          ' ',' ',' ',
          ' ',' ',' ']
