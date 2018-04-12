@@ -9,7 +9,7 @@ p = [[3,0,0,5],
      [3,0,0,0],
      [5,2,2,5],
      [3,1,2,3],
-     [3,1,5,3],
+     [3,4,5,3],
      [3,0,2,3]]
 
 def getInteraction():
@@ -24,45 +24,45 @@ def getInteraction():
         userAction = 2
     if userAction == "joke":
         userAction = 3
-    #break
     return userAction
+
+def lookupEmotion (userAction, currEmotion):
+    i = currEmotion 
+    j = userAction
+    reaction = p[i][j]
     
-        #TODO return an emotion
-#        return userAction
+    if reaction == 0:
+        currEmotion = "anger"
+        print ("You make me so angry sometimes!")
+        
+    if reaction == 1:
+        currEmotion = "disgust"
+        print ("Ugh, I am #DISGUSTED")
+        
+    if reaction == 2:
+        currEmotion = "fear"
+        print ("AHH I'm scared!")
+        
+    if reaction == 3:
+        currEmotion = "happiness"
+        print ("Aww you made me happy!")
+        
+    if reaction == 4:
+        currEmotion = "sadness"
+        print ("Boooo you made me sad")
+        
+    if reaction == 5:
+        currEmotion = "surprise"
+        print("I was not expecting that!! You surprised me!")
 
-def lookupEmotion (userAction):
-    currEmotion = 3
-    userAction = [col]
-    print("You got here")
-    currEmotion = [row]
-    if p[row][col] == 0:
-        currEmotion = anger
+    return currEmotion
         
-    if p[row][col] == 1:
-        currEmotion = disgust
-        
-    if p[row][col] == 2:
-        currEmotion = fear
-        
-    if p[row][col] == 3:
-        currEmotion = happiness
-        
-    if p[row][col] == 4:
-        currEmotion = sadness
-        
-    if p[row][col] == 5:
-        currEmotion = surprise
-        
-    print (currEmotion)
-    return currEmotion, userAction
-    #takes current emotion and the interaction and determines next emotion
-    #return emotion
-
 
 
 def main():
-    getInteraction()
-    lookupEmotion (userAction)
+    currEmotion = 3
+    userAction = getInteraction()
+    currEmotion = lookupEmotion (userAction, currEmotion)
     print(currEmotion)
 
 main()
