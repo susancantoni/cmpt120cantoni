@@ -8,8 +8,8 @@
 p = [[3,0,0,5],
      [3,0,0,0],
      [5,2,2,5],
-     [3,1,2,3],
-     [3,4,5,3],
+     [3,4,2,3],
+     [3,0,5,3],
      [3,0,2,3]]
 
 def getInteraction():
@@ -34,35 +34,44 @@ def lookupEmotion (userAction, currEmotion):
     if reaction == 0:
         currEmotion = "anger"
         print ("You make me so angry sometimes!")
+        return 0
         
     if reaction == 1:
         currEmotion = "disgust"
         print ("Ugh, I am #DISGUSTED")
+        return 1
         
     if reaction == 2:
         currEmotion = "fear"
         print ("AHH I'm scared!")
+        return 2
         
     if reaction == 3:
         currEmotion = "happiness"
         print ("Aww you made me happy!")
+        return 3
         
     if reaction == 4:
         currEmotion = "sadness"
         print ("Boooo you made me sad")
+        return 4
         
     if reaction == 5:
         currEmotion = "surprise"
         print("I was not expecting that!! You surprised me!")
-
+        return 5
+    print(currEmotion)
     return currEmotion
         
 
 
 def main():
+    print ("Welcome to the Artificial Intelligence Program. This program will")
+    print ("take an action of your choosing and determine how the AI will feel.")
+    print ("It will work based on its current emotion, which will change as you go.")
     currEmotion = 3
-    userAction = getInteraction()
-    currEmotion = lookupEmotion (userAction, currEmotion)
-    print(currEmotion)
+    while True:
+        userAction = getInteraction()
+        currEmotion = lookupEmotion (userAction, currEmotion)
 
 main()
