@@ -42,7 +42,7 @@ def lookupEmotion (userAction, currEmotion):
         return 1, feeling
         
     if reaction == 2:
-        feeling = "fear"
+        feeling = "fearful"
         print ("AHH I'm scared!")
         return 2, feeling
         
@@ -57,7 +57,7 @@ def lookupEmotion (userAction, currEmotion):
         return 4, feeling
         
     if reaction == 5:
-        feeling = "surprise"
+        feeling = "surprised"
         print("I was not expecting that!! You surprised me!")
         return 5, feeling
     
