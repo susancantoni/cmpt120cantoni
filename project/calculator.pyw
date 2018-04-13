@@ -4,8 +4,6 @@
 
 #graphical user interface calculator
 
-# JA: You could simplify your code by using some more functions and loops
-
 from calc_functions import *
 from graphics import *
 
@@ -261,16 +259,13 @@ def main():
 
                 elif key == 'M+':
                     memory = add(float(memory), entry or answer)
-                    displayString = float(memory)
                     displayString = str(memory)
 
                 elif key == 'MR':
-                    displayString = float(memory)
                     displayString = str(memory)
                     
                 elif key == 'M-':
                     memory = subtract(float(memory), entry or answer)
-                    displayString = float(memory)
                     displayString = str(memory)
 
                 elif key == 'MC':
@@ -280,7 +275,6 @@ def main():
                     temp = memory
                     memory = entry
                     entry = temp
-                    displayString = float(memory)
                     displayString = str(memory)
                     
                 elif key == '10^x':
@@ -289,37 +283,7 @@ def main():
                     displayString = '10^' + str(answer)
                     clearNextNumber = True
                     
-                elif key in ['sin', 'cos', 'tan']:
-                    answer, entry = do_calculation(answer, entry, operation)
-                    operation = key
-                    displayString = key + '(' + str(answer) + ')'
-                    clearNextNumber = True
-
-                elif key == 'log':
-                    answer, entry = do_calculation(answer, entry, operation)
-                    operation = key
-                    displayString = key + '(' + str(answer) + ')'
-                    clearNextNumber = True
-                    
-                elif key == 'ln':
-                    answer, entry = do_calculation(answer, entry, operation)
-                    operation = key
-                    displayString = key + '(' + str(answer) + ')'
-                    clearNextNumber = True
-                    
-                elif key == 'sin^-1':
-                    answer, entry = do_calculation(answer, entry, operation)
-                    operation = key
-                    displayString = key + '(' + str(answer) + ')'
-                    clearNextNumber = True
-                                    
-                elif key == 'cos^-1':
-                    answer, entry = do_calculation(answer, entry, operation)
-                    operation = key
-                    displayString = key + '(' + str(answer) + ')'
-                    clearNextNumber = True
-                                    
-                elif key == 'tan^-1':
+                elif key in ['sin', 'cos', 'tan', 'log', 'ln', 'sin^-1', 'cos^-1', 'tan^-1']:
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString = key + '(' + str(answer) + ')'
@@ -356,8 +320,10 @@ def main():
                     
                 else:
                     # number keys or '.'
+                    """
                     # JA: SIngle argument functions, e.g. sin could
                     # calculate without waiting for =
+                    """
                     if clearNextNumber:
                         displayString = ''
                         clearNextNumber = False
