@@ -358,7 +358,10 @@ def main():
                         entryString = ''
                         operation = None
                     entryString = entryString + key
-                    entry = eval(entryString) 
+                    if entryString[0] == '.':
+                        entry = eval("0" + entryString)
+                    else:
+                        entry = eval(entryString) 
                     displayString1 = displayString1 + key
                     displayString2 = ''
 
