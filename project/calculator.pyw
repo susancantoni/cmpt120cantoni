@@ -304,10 +304,21 @@ def main():
                 elif key in ['sin', 'cos', 'tan', 'log', 'ln', 'sin^-1', 'cos^-1', 'tan^-1']:
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
-                    displayString1 = key + '(' + str(answer) + ')'
-                    displayString2 = str(answer)
-                    #^ what is answer at this point?
+
+                    if answer == None:
+                        answer = entry
+                        displayString1 = key + '(' + entryString + ')'
+                        displayString2 = str(answer)
+                        entry = 0
+                        entryString = ''
+                    else:
+                        answer, entry = do_calculation(answer, entry, operation)
+                        operation = None
+                        displayString1 = key + '(' + entryString + ')'
+                        displayString2 = '%20.3f' % (answer)
+
                     clearNextNumber = True
+
 
                 elif key == 'x^y':
                     answer, entry = do_calculation(answer, entry, operation)
@@ -376,4 +387,12 @@ def main():
                 displayTextElement2.setSize(20)
                 displayTextElement2.draw(win)
 
+                # debug printouts
+                """
+                if answer:
+                    print("key: %s answer: %15.3f entry %15.3f" % (key, answer, entry))
+                else:
+                    print("key: %s answer: None     entry %15.3f" % (key, entry))
+
+                """
 main()
