@@ -202,39 +202,34 @@ def main():
             if key:
                 if key == '=':
                     clearNextNumber = False
-                    # do the calculation
                     if answer == None:
                         answer = entry
-                        displayString1 = entryString
+                        displayString1 = ''
                         displayString2 = str(answer)
                         entry = 0
                         entryString = ''
                     else:
                         answer, entry = do_calculation(answer, entry, operation)
                         operation = None
-                        displayString1 = displayString1
+                        displayString1 = ''
                         displayString2 = '%20.3f' % (answer) 
 
                 elif key in ['+', '-', '/', '*', '%']:
-                    # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     entryString = ''
                     operation = key
                     displayString1 = displayString1 + key
-                    displayString2 = ''
+                    displayString2 = str(answer)
                     clearNextNumber = False
                     
                 elif key == '+/-':
-                    # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
-                    entryString = ''
                     operation = key
                     displayString1 = ''
                     displayString2 = str(answer)
                     clearNextNumber = True
 
                 elif key == 'x2':
-                    # do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
                     displayString1 = str(answer) + str('^2')
@@ -242,12 +237,10 @@ def main():
                     clearNextNumber = True
 
                 elif key  == '√':
-                    #do the calculation
                     answer, entry = do_calculation(answer, entry, operation)
                     entryString = ''
                     operation = key
-                    #trial -- + entry
-                    displayString1 = key + entry
+                    displayString1 = key + str(answer)
                     displayString2 = str(answer)
                     clearNextNumber = True
 
@@ -256,7 +249,7 @@ def main():
                     answer, entry = do_calculation(answer, entry, operation)
                     entryString = ''
                     operation = key
-                    displayString1 = ''
+                    displayString1 = '1/' + str(answer)
                     displayString2 = str(answer)
                     clearNextNumber = True
 
@@ -296,7 +289,6 @@ def main():
                 elif key == '10^x':
                     answer, entry = do_calculation(answer, entry, operation)
                     operation = key
-                    #entry ?
                     displayString1 = '10^' + str(answer)
                     displayString2 = ''
                     clearNextNumber = True
@@ -345,21 +337,23 @@ def main():
                 elif key == '(':
                     entryString = ''
                     displayString1 = displayString1 + '(' + entryString
-                    displayString2 = ''
+                    if answer:
+                        displayString2 = str(answer)
+                    else:
+                        displayString2 = ''
                     clearNextNumber = False
 
                 elif key == ')':
                     displayString1 = displayString1 + ')'
-                    displayString2 = ''
+                    if answer:
+                        displayString2 = str(answer)
+                    else:
+                        displayString2 = ''
                     clearNextNumer = False
 
                     
                 else:
                     # number keys or '.'
-                    """
-                    # JA: SIngle argument functions, e.g. sin could
-                    # calculate without waiting for =
-                    """
                     if clearNextNumber:
                         displayString1 = ''
                         displayString2 = ''
@@ -374,7 +368,7 @@ def main():
                     else:
                         entry = eval(entryString) 
                     displayString1 = displayString1 + key
-                    displayString2 = ''
+                    displayString2 = key
 
                 displayTextElement1.undraw()
                 displayTextElement1 = Text(Point(300, 50), displayString1)
@@ -382,17 +376,9 @@ def main():
                 displayTextElement1.setSize(20)
                 displayTextElement1.draw(win)
                 displayTextElement2.undraw()
-                displayTextElement2 = Text(Point(250, 75), displayString2)
+                displayTextElement2 = Text(Point(300, 75), displayString2)
                 displayTextElement2.setFace('arial')
                 displayTextElement2.setSize(20)
                 displayTextElement2.draw(win)
 
-                # debug printouts
-                """
-                if answer:
-                    print("key: %s answer: %15.3f entry %15.3f" % (key, answer, entry))
-                else:
-                    print("key: %s answer: None     entry %15.3f" % (key, entry))
-
-                """
 main()
