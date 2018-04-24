@@ -6,6 +6,7 @@
 
 from calc_functions import *
 from graphics import *
+from button import *
 
 # list of buttons (button, label)
 buttons = []
@@ -20,15 +21,6 @@ def create_button(win, x1, y1, x2, y2, label, color = 'aquamarine'):
     text.setSize(20)
     text.draw(win)
     return button, label
-
-def check_button(button, label, x, y):
-    x1 = button.p1.getX()
-    y1 = button.p1.getY()
-    x2 = button.p2.getX()
-    y2 = button.p2.getY()
-    if x > x1 and x < x2 and y > y1 and y < y2:
-        return label
-    return False
 
 def do_calculation(answer, entry, operation):
     if answer == None:
@@ -86,47 +78,47 @@ def create_window(scientific_mode):
         displayScreen.draw(win)
 
         del buttons[:]
+        buttons.append(Button(win, Point(40.5, 151), 65, 72, "7"))
+        buttons.append(Button(win, Point(40.5, 228), 65, 72, "4"))
+        buttons.append(Button(win, Point(40.5, 305), 65, 72, "1"))
+        buttons.append(Button(win, Point(40.5, 382), 65, 72, "+/-", 'blue'))
+        buttons.append(Button(win, Point(40.5, 459), 65, 72, "x2", 'blue'))
+        buttons.append(Button(win, Point(40.5, 536), 65, 72, "(", 'blue'))
+        buttons.append(Button(win, Point(40.5, 613), 65, 72, "M+", 'lightskyblue'))
+        buttons.append(Button(win, Point(113.5, 151), 65, 72, "8"))
+        buttons.append(Button(win, Point(113.5, 228), 65, 72, "5"))
+        buttons.append(Button(win, Point(113.5, 305), 65, 72, "2"))
+        buttons.append(Button(win, Point(113.5, 382), 65, 72, "0"))
+        buttons.append(Button(win, Point(113.5, 459), 65, 72, "√", 'blue'))
+        buttons.append(Button(win, Point(113.5, 536), 65, 72, ")", 'blue'))
+        buttons.append(Button(win, Point(113.5, 613), 65, 72, "MR", 'lightskyblue'))
+        buttons.append(Button(win, Point(186.5, 151), 65, 72, "9"))
+        buttons.append(Button(win, Point(186.5, 228), 65, 72, "6"))
+        buttons.append(Button(win, Point(186.5, 305), 65, 72, "3"))
+        buttons.append(Button(win, Point(186.5, 382), 65, 72, "."))
+        buttons.append(Button(win, Point(186.5, 459), 65, 72, "1/x", 'blue'))
+        buttons.append(Button(win, Point(186.5, 536), 65, 72, "C", 'blue'))
+        buttons.append(Button(win, Point(186.5, 613), 65, 72, "MS", 'lightskyblue'))
+        buttons.append(Button(win, Point(259.5, 151), 65, 72, "/", 'blue'))
+        buttons.append(Button(win, Point(259.5, 228), 65, 72, "*", 'blue'))
+        buttons.append(Button(win, Point(259.5, 305), 65, 72, "+", 'blue'))
+        buttons.append(Button(win, Point(259.5, 382), 65, 72, "-", 'blue'))
+        buttons.append(Button(win, Point(259.5, 459), 65, 72, "%", 'blue'))
+        buttons.append(Button(win, Point(259.5, 536), 65, 72, "=", 'blue'))
+        buttons.append(Button(win, Point(259.5, 613), 65, 72, "M-", 'lightskyblue'))       
+        buttons.append(Button(win, Point(332.5, 151), 65, 72, "sin", 'blue'))
+        buttons.append(Button(win, Point(332.5, 228), 65, 72, "cos", 'blue'))
+        buttons.append(Button(win, Point(332.5, 305), 65, 72, "tan", 'blue'))
+        buttons.append(Button(win, Point(332.5, 382), 65, 72, "10^x", 'blue'))
+        buttons.append(Button(win, Point(332.5, 459), 65, 72, "log", 'blue'))
+        buttons.append(Button(win, Point(332.5, 536), 65, 72, "ln", 'blue'))
+        buttons.append(Button(win, Point(332.5, 613), 65, 72, "MC", 'lightskyblue'))
+        buttons.append(Button(win, Point(405.5, 305), 65, 72, "sin^-1", 'blue'))
+        buttons.append(Button(win, Point(405.5, 382), 65, 72, "cos^-1", 'blue'))
+        buttons.append(Button(win, Point(405.5, 459), 65, 72, "tan^-1", 'blue'))
+        buttons.append(Button(win, Point(405.5, 536), 65, 72, "x^y", 'blue'))
+        buttons.append(Button(win, Point(405.5, 613), 65, 72, "Sci", 'lightskyblue'))
 
-        buttons.append(create_button (win, 8, 115, 73, 187, "7"))
-        buttons.append(create_button (win, 8, 192, 73, 264, "4"))
-        buttons.append(create_button (win, 8, 269, 73, 341, "1"))
-        buttons.append(create_button (win, 8, 346, 73, 418, "+/-", 'blue'))
-        buttons.append(create_button (win, 8, 423, 73, 495, "x2", 'blue'))
-        buttons.append(create_button (win, 8, 500, 73, 572, "(", 'blue'))
-        buttons.append(create_button (win, 8, 577, 73, 649, "M+", 'lightskyblue'))
-        buttons.append(create_button (win, 81, 115, 146, 187, "8"))
-        buttons.append(create_button (win, 81, 192, 146, 264, "5"))
-        buttons.append(create_button (win, 81, 269, 146, 341, "2"))
-        buttons.append(create_button (win, 81, 346, 146, 418, "0"))
-        buttons.append(create_button (win, 81, 423, 146, 495, "√", 'blue'))
-        buttons.append(create_button (win, 81, 500, 146, 572, ")", 'blue'))
-        buttons.append(create_button (win, 81, 577, 146, 649, "MR", 'lightskyblue'))
-        buttons.append(create_button (win, 154, 115, 219, 187, "9"))
-        buttons.append(create_button (win, 154, 192, 219, 264, "6"))
-        buttons.append(create_button (win, 154, 269, 219, 341, "3"))
-        buttons.append(create_button (win, 154, 346, 219, 418, "."))
-        buttons.append(create_button (win, 154, 423, 219, 495, "1/x", 'blue'))
-        buttons.append(create_button (win, 154, 500, 219, 572, "C", 'blue'))
-        buttons.append(create_button (win, 154, 577, 219, 649, "MS", 'lightskyblue'))
-        buttons.append(create_button (win, 227, 115, 292, 187, "/", 'blue'))
-        buttons.append(create_button (win, 227, 192, 292, 264, "*", 'blue'))
-        buttons.append(create_button (win, 227, 269, 292, 341, "+", 'blue'))
-        buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
-        buttons.append(create_button (win, 227, 423, 292, 495, "%", 'blue'))
-        buttons.append(create_button (win, 227, 500, 292, 572, "=", 'blue'))
-        buttons.append(create_button (win, 227, 577, 292, 649, "M-", 'lightskyblue'))
-        buttons.append(create_button (win, 300, 115, 365, 187, "sin", 'blue'))
-        buttons.append(create_button (win, 300, 192, 365, 264, "cos", 'blue'))
-        buttons.append(create_button (win, 300, 269, 365, 341, "tan", 'blue'))
-        buttons.append(create_button (win, 300, 346, 365, 418, "10^x", 'blue'))
-        buttons.append(create_button (win, 300, 423, 365, 495, "log", 'blue'))
-        buttons.append(create_button (win, 300, 500, 365, 572, "ln", 'blue'))
-        buttons.append(create_button (win, 300, 577, 365, 649, "MC", 'lightskyblue'))
-        buttons.append(create_button (win, 373, 115, 438, 187, "sin^-1", 'blue'))
-        buttons.append(create_button (win, 373, 192, 438, 264, "cos^-1", 'blue'))
-        buttons.append(create_button (win, 373, 269, 438, 341, "tan^-1", 'blue'))
-        buttons.append(create_button (win, 373, 346, 438, 418, "x^y", 'blue'))
-        buttons.append(create_button (win, 373, 577, 438, 649, "Sci", 'lightskyblue'))
 
     else:
         win = GraphWin("Calculator", 373, 654)
@@ -137,37 +129,40 @@ def create_window(scientific_mode):
 
         del buttons[:]
     
-        buttons.append(create_button (win, 8, 115, 73, 187, "7"))
-        buttons.append(create_button (win, 8, 192, 73, 264, "4"))
-        buttons.append(create_button (win, 8, 269, 73, 341, "1"))
-        buttons.append(create_button (win, 8, 346, 73, 418, "+/-", 'blue'))
-        buttons.append(create_button (win, 8, 423, 73, 495, "x2", 'blue'))
-        buttons.append(create_button (win, 8, 500, 73, 572, "MC", 'lightskyblue'))
-        buttons.append(create_button (win, 8, 577, 73, 649, "M+", 'lightskyblue'))
-        buttons.append(create_button (win, 81, 115, 146, 187, "8"))
-        buttons.append(create_button (win, 81, 192, 146, 264, "5"))
-        buttons.append(create_button (win, 81, 269, 146, 341, "2"))
-        buttons.append(create_button (win, 81, 346, 146, 418, "0"))
-        buttons.append(create_button (win, 81, 423, 146, 495, "√", 'blue'))
-        buttons.append(create_button (win, 81, 500, 146, 572, "M-", 'lightskyblue'))
-        buttons.append(create_button (win, 81, 577, 146, 649, "MR", 'lightskyblue'))
-        buttons.append(create_button (win, 154, 115, 219, 187, "9"))
-        buttons.append(create_button (win, 154, 192, 219, 264, "6"))
-        buttons.append(create_button (win, 154, 269, 219, 341, "3"))
-        buttons.append(create_button (win, 154, 346, 219, 418, "."))
-        buttons.append(create_button (win, 154, 423, 219, 495, "1/x", 'blue'))
-        buttons.append(create_button (win, 154, 500, 219, 572, "C", 'blue'))
-        buttons.append(create_button (win, 154, 577, 219, 649, "MS", 'lightskyblue'))
-        buttons.append(create_button (win, 227, 115, 292, 187, "/", 'blue'))
-        buttons.append(create_button (win, 227, 192, 292, 264, "*", 'blue'))
-        buttons.append(create_button (win, 227, 269, 292, 341, "+", 'blue'))
-        buttons.append(create_button (win, 227, 346, 292, 418, "-", 'blue'))
-        buttons.append(create_button (win, 227, 423, 292, 495, "%", 'blue'))
-        buttons.append(create_button (win, 227, 500, 292, 572, "=", 'blue'))
-        buttons.append(create_button (win, 227, 577, 292, 649, "Sci", 'lightskyblue'))
-        buttons.append(create_button (win, 300, 115, 365, 187, "(", 'blue'))
-        buttons.append(create_button (win, 300, 192, 365, 264, ")", 'blue'))
+        buttons.append(Button(win, Point(40.5, 151), 65, 72, "7"))
+        buttons.append(Button(win, Point(40.5, 228), 65, 72, "4"))
+        buttons.append(Button(win, Point(40.5, 305), 65, 72, "1"))
+        buttons.append(Button(win, Point(40.5, 382), 65, 72, "+/-", 'blue'))
+        buttons.append(Button(win, Point(40.5, 459), 65, 72, "x2", 'blue'))
+        buttons.append(Button(win, Point(40.5, 536), 65, 72, "MC", 'blue'))
+        buttons.append(Button(win, Point(40.5, 613), 65, 72, "M+", 'lightskyblue'))
+        buttons.append(Button(win, Point(113.5, 151), 65, 72, "8"))
+        buttons.append(Button(win, Point(113.5, 228), 65, 72, "5"))
+        buttons.append(Button(win, Point(113.5, 305), 65, 72, "2"))
+        buttons.append(Button(win, Point(113.5, 382), 65, 72, "0"))
+        buttons.append(Button(win, Point(113.5, 459), 65, 72, "√", 'blue'))
+        buttons.append(Button(win, Point(113.5, 536), 65, 72, "M-", 'blue'))
+        buttons.append(Button(win, Point(113.5, 613), 65, 72, "MR", 'lightskyblue'))
+        buttons.append(Button(win, Point(186.5, 151), 65, 72, "9"))
+        buttons.append(Button(win, Point(186.5, 228), 65, 72, "6"))
+        buttons.append(Button(win, Point(186.5, 305), 65, 72, "3"))
+        buttons.append(Button(win, Point(186.5, 382), 65, 72, "."))
+        buttons.append(Button(win, Point(186.5, 459), 65, 72, "1/x", 'blue'))
+        buttons.append(Button(win, Point(186.5, 536), 65, 72, "C", 'blue'))
+        buttons.append(Button(win, Point(186.5, 613), 65, 72, "MS", 'lightskyblue'))
+        buttons.append(Button(win, Point(259.5, 151), 65, 72, "/", 'blue'))
+        buttons.append(Button(win, Point(259.5, 228), 65, 72, "*", 'blue'))
+        buttons.append(Button(win, Point(259.5, 305), 65, 72, "+", 'blue'))
+        buttons.append(Button(win, Point(259.5, 382), 65, 72, "-", 'blue'))
+        buttons.append(Button(win, Point(259.5, 459), 65, 72, "%", 'blue'))
+        buttons.append(Button(win, Point(259.5, 536), 65, 72, "=", 'blue'))
+        buttons.append(Button(win, Point(259.5, 613), 65, 72, "Sci", 'lightskyblue'))       
+        buttons.append(Button(win, Point(332.5, 151), 65, 72, "(", 'blue'))
+        buttons.append(Button(win, Point(332.5, 228), 65, 72, ")", 'blue'))
 
+    for b in buttons:
+        b.activate()
+        
     displayString1 = ''
     displayString2 = ''
     displayTextElement1 = Text(Point(300, 50), "")
@@ -197,9 +192,8 @@ def main():
         y = clicked.getY()
 
         for b in buttons:
-            button, label = b
-            key = check_button(button, label, x, y)
-            if key:
+            if b.clicked(Point(x,y)):
+                key = b.getLabel()
                 if key == '=':
                     clearNextNumber = False
                     if answer == None:
@@ -382,3 +376,8 @@ def main():
                 displayTextElement2.draw(win)
 
 main()
+
+
+
+calc = Calculator()
+calc.run()
