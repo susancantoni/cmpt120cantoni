@@ -12,16 +12,6 @@ from button import *
 buttons = []
 
 
-def create_button(win, x1, y1, x2, y2, label, color = 'aquamarine'):
-    button = Rectangle(Point(x1,y1), Point(x2, y2))
-    button.setFill(color)
-    button.draw(win)
-    text = Text(button.getCenter(), label)
-    text.setFace('arial')
-    text.setSize(20)
-    text.draw(win)
-    return button, label
-
 def do_calculation(answer, entry, operation):
     if answer == None:
         answer = entry
@@ -378,6 +368,3 @@ def main():
 main()
 
 
-
-calc = Calculator()
-calc.run()
