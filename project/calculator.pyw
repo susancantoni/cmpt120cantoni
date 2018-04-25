@@ -7,6 +7,7 @@
 from calc_functions import *
 from graphics import *
 from button import *
+from display import *
 
 # list of buttons (button, label)
 buttons = []
