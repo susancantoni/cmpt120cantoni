@@ -62,10 +62,8 @@ def create_window(scientific_mode):
     if scientific_mode:
             
         win = GraphWin("Calculator", 446, 654)
-
-        displayScreen = Rectangle (Point(10,10), Point(436,110))
-        displayScreen.setFill('lightcyan')
-        displayScreen.draw(win)
+        display = Display(win, Point(223, 60), 426, 100)
+        
 
         del buttons[:]
         buttons.append(Button(win, Point(40.5, 151), 65, 72, "7"))
@@ -113,9 +111,7 @@ def create_window(scientific_mode):
     else:
         win = GraphWin("Calculator", 373, 654)
 
-        displayScreen = Rectangle (Point(10,10), Point(363,110))
-        displayScreen.setFill('lightcyan')
-        displayScreen.draw(win)
+        display = Display(win, Point(183, 60), 353, 100)
 
         del buttons[:]
     
@@ -150,21 +146,17 @@ def create_window(scientific_mode):
         buttons.append(Button(win, Point(332.5, 151), 65, 72, "(", 'blue'))
         buttons.append(Button(win, Point(332.5, 228), 65, 72, ")", 'blue'))
 
-    for b in buttons:
-        b.activate()
         
-    displayString1 = ''
-    displayString2 = ''
-    displayTextElement1 = Text(Point(300, 50), "")
-    displayTextElement1.draw(win)
-    displayTextElement2 = Text(Point(250, 75), "")
-    displayTextElement2.draw(win)
+    display.addLine(Point(300, 50))
+    display.addLine(Point(300, 75))
+    display.setLine(0, '')
+    display.setLine(1, '')
 
-    return win, displayString1, displayString2, displayTextElement1, displayTextElement2
+    return win, display
 
 def main():
     scientific_mode = False
-    win, displayString1, displayString2, displayTextElement1, displayTextElement2 = create_window (scientific_mode)
+    win, display = create_window (scientific_mode)
     #answer is running total
     #entry is the current number being typed in
     #operation is adding the math funtion to the equals display
@@ -175,7 +167,9 @@ def main():
     clearNextNumber = False
     memory = 0
     entryString = ''
-
+    displayString1 = ''
+    displayString2 = ''
+    
     while 1 == 1:
         clicked = win.getMouse()
         x = clicked.getX()
@@ -354,16 +348,9 @@ def main():
                     displayString1 = displayString1 + key
                     displayString2 = key
 
-                displayTextElement1.undraw()
-                displayTextElement1 = Text(Point(300, 50), displayString1)
-                displayTextElement1.setFace('arial')
-                displayTextElement1.setSize(20)
-                displayTextElement1.draw(win)
-                displayTextElement2.undraw()
-                displayTextElement2 = Text(Point(300, 75), displayString2)
-                displayTextElement2.setFace('arial')
-                displayTextElement2.setSize(20)
-                displayTextElement2.draw(win)
+                # update both display lines
+                display.setLine(0, displayString1)
+                display.setLine(1, displayString2)
 
 main()
 
