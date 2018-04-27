@@ -13,12 +13,12 @@ class Player:
         return random() <= self.prob
 
     def incScore(self):
-        # Add a point to this player's score
-        if self.score = 30:
+        # Add a point to this player's score. note beyond 40 just keep adding 15
+        # because this is just an internal number (not real tennis score)
+        if self.score == 30:
             self.score = self.score + 10
         else:
             self.score = self.score + 15
-        if self.score > 40:
 
     def getScore(self):
         # Return this player's current score
