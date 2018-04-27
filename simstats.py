@@ -18,7 +18,7 @@ class SimStats:
                 self.shutsB = self.shutsB + 1
                 
     def __printHeading(self):
-        print("Summary of", self.winsA + self.winsB, "games:\n")
+        print("Summary of", self.winsA + self.winsB, "matches:\n")
         print("          wins (% total)    shutouts  (% wins) ")
         print("-----------------------------------------------")
 
