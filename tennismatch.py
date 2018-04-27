@@ -1,5 +1,6 @@
 # tennis match 
-from player import Player
+from tennisplayer import *
+import time
 
 class TennisMatch:
     def __init__(self, probA, probB):
