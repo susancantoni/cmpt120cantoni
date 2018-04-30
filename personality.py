@@ -30,7 +30,8 @@ def lookupEmotion (userAction, currEmotion):
     i = currEmotion 
     j = userAction
     reaction = p[i][j]
-    
+
+    # JA: This you can also do with a list
     if reaction == 0:
         feeling = "anger"
         print ("You make me so angry sometimes!")

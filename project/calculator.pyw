@@ -4,6 +4,9 @@
 
 #graphical user interface calculator
 
+# JA: It doesn't fail, but if you try sequence 3 from the project description
+# it does not do the caqlculation right.
+
 from calc_functions import *
 from graphics import *
 
